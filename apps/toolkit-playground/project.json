@@ -1,0 +1,90 @@
+{
+  "name": "toolkit-playground",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/toolkit-playground/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/toolkit-playground",
+        "index": "apps/toolkit-playground/src/index.html",
+        "baseHref": "/",
+        "main": "apps/toolkit-playground/src/main.tsx",
+        "tsConfig": "apps/toolkit-playground/tsconfig.app.json",
+        "assets": [
+          "apps/toolkit-playground/src/favicon.ico",
+          "apps/toolkit-playground/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/toolkit-playground/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/toolkit-playground/src/environments/environment.ts",
+              "with": "apps/toolkit-playground/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "toolkit-playground:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "toolkit-playground:build:development"
+        },
+        "production": {
+          "buildTarget": "toolkit-playground:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/toolkit-playground/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/toolkit-playground/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
