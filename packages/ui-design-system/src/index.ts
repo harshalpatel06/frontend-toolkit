@@ -11,5 +11,5 @@ export const molecules = {
 };
 
 export const organisms = {
-  ProductList
+  ProductList,
 };

@@ -15,10 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@frontend-toolkit/storybook-host": [
+      "@harshalpatel06/storybook-host": [
         "packages/storybook-host/src/index.ts"
       ],
-      "@selfridges-co/harry-ui": ["packages/harry-ui/src/index.ts"]
+      "@harshalpatel06/ui-design-system": [
+        "packages/ui-design-system/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

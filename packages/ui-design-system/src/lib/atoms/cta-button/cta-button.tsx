@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 /* eslint-disable-next-line */
-export interface CtaButtonProps { }
+export interface CtaButtonProps {}
 
 const StyledCtaButton = styled.button`
   color: yellow;
